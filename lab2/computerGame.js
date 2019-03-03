@@ -5,6 +5,8 @@ createGame("League of Legends", "MMO/RPG", 2009, false, false, ['strategy', 'esp
 createGame("Wiedźmin 3: Dziki Gon", "RPG", 2015, false, false, ['pc', 'gameoftheyear', ''])
 
 console.log(readGame(0))
+console.log(deleteGame(1))
+console.log(db)
 
 function createGame(name, category, relase, mobileVersion, payToWin, tags){
     var computer_game = {
@@ -24,7 +26,14 @@ function updateGame(index){
 
 }
 function deleteGame(index){
-    delete db[index]
+    db.foreach(function(el) {
+        if (el == index) {
+            delete db[index]
+            return true
+        }
+        console.log("Item not exist.")
+        return false
+    })
 }
 function findBy(){}
 
