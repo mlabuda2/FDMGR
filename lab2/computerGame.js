@@ -4,6 +4,9 @@ createGame("FIFA 19", "Sport", 2018, true, true, ['multiplayer', 'esport', 'ics'
 createGame("League of Legends", "MMO/RPG", 2009, false, false, ['strategy', 'esport', 'pc'])
 createGame("Wiedźmin 3: Dziki Gon", "RPG", 2015, false, false, ['pc', 'gameoftheyear', ''])
 
+
+console.log(readGame(0))
+
 function createGame(name, category, relase, mobileVersion, payToWin, tags){
     var computer_games = {
         name: name,
@@ -15,7 +18,9 @@ function createGame(name, category, relase, mobileVersion, payToWin, tags){
     };
     db.push(computer_games)
 };
-function readGame(){}
+function readGame(index){
+    return db[index]
+}
 function updateGame(){}
 function deleteGame(){}
 function findBy(){}
