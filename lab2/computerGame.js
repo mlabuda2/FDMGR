@@ -1,15 +1,17 @@
 var db = [];
 
-createGame("FIFA 19", "Sport", 2018, true, true, ['multiplayer', 'esport', 'ics', 'ps4', 'xbox', 'pc'])
-createGame("League of Legends", "MMO/RPG", 2009, false, false, ['strategy', 'esport', 'pc'])
-createGame("Wiedźmin 3: Dziki Gon", "RPG", 2015, false, false, ['pc', 'gameoftheyear', ''])
+createGame(0, "FIFA 19", "Sport", 2018, true, true, ['multiplayer', 'esport', 'ics', 'ps4', 'xbox', 'pc'])
+createGame(1, "League of Legends", "MMO/RPG", 2009, false, false, ['strategy', 'esport', 'pc'])
+createGame(2, "Wiedźmin 3: Dziki Gon", "RPG", 2015, false, false, ['pc', 'gameoftheyear', ''])
 
-console.log(readGame(0))
-console.log(deleteGame(1))
+// console.log(readGame(0))
+console.log(deleteGameByKey(0, "id"))
+console.log(deleteGameByKey("League of Legends", "name"))
 console.log(db)
 
-function createGame(name, category, relase, mobileVersion, payToWin, tags){
+function createGame(id, name, category, relase, mobileVersion, payToWin, tags){
     var computer_game = {
+        id: id,
         name: name,
         category: category,
         relase: relase,
@@ -19,22 +21,28 @@ function createGame(name, category, relase, mobileVersion, payToWin, tags){
     };
     db.push(computer_game)
 };
-function readGame(index){
-    return db[index]
+function readGame(game){
 }
 function updateGame(index){
-
 }
-function deleteGame(index){
-    db.foreach(function(el) {
-        if (el == index) {
-            delete db[index]
-            return true
+function deleteGameByKey(idx, searchBy){
+    var removeIndex = db.map(function(item) { 
+        dispatcher = {
+            "id": item.id,
+            "name": item.name,
+            "category": item.category,
+            "relase": item.relase,
+            "mobileVersion": item.mobileVersion,
+            "payToWin": item.payToWin,
+            "tags": item.tags
         }
-        console.log("Item not exist.")
-        return false
-    })
+        key = dispatcher[searchBy]
+        return key; 
+    }).indexOf(idx);
+    if (removeIndex >= 0 && db.splice(removeIndex, 1)){
+        return true
+    }
+    console.log("Item doesn't exist.")
+    return false
 }
 function findBy(){}
-
-console.log(db)
