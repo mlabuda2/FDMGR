@@ -3,17 +3,19 @@ var db = [];
 createGame(0, "FIFA 19", "Sport", 2018, true, true, ['multiplayer', 'esport', 'ics', 'ps4', 'xbox', 'pc'])
 createGame(1, "League of Legends", "MMO/RPG", 2009, false, false, ['strategy', 'esport', 'pc'])
 createGame(2, "Wiedźmin 3: Dziki Gon", "RPG", 2015, false, false, ['pc', 'gameoftheyear', ''])
+createGame("Wiedźmin 3: Dz iki Gon", "RPG", 2015, false, false, ['pc', 'gameoftheyear', ''])
 
-// console.log(readGame(0))
-console.log(deleteGameByKey(0, "id"))
-console.log(deleteGameByKey("League of Legends", "name"))
-// console.log(db)
-game = readGameByKey("Wiedźmin 3: Dziki Gon", "name")
-game.category = "MMO/RPG"
-console.log(updateGame(readGameByKey("Wiedźmin 3: Dziki Gon", "name"), game))
 console.log(db)
+console.log(deleteGameBy(0, "id"))
+console.log(deleteGameBy("League of Legends", "name"))
+// console.log(db)
+game = readGameBy("Wiedźmin 3: Dziki Gon", "name")
+game.category = "MMO/RPG"
+console.log(updateGame(readGameBy("Wiedźmin 3: Dziki Gon", "name"), game))
+// console.log(db)
 
-function createGame(id, name, category, relase, mobileVersion, payToWin, tags){
+function createGame(id, name, category=null, relase=null, mobileVersion=null, payToWin=null, tags=[]){
+    if ((!name)||(!id && id != 0)||(!Number.isInteger(id))){console.log("Bad data."); return false }
     var computer_game = {
         id: id,
         name: name,
@@ -23,9 +25,10 @@ function createGame(id, name, category, relase, mobileVersion, payToWin, tags){
         payToWin: payToWin,
         tags: tags
     };
+    console.log("Item created.")
     db.push(computer_game)
 };
-function readGameByKey(idx, searchBy){
+function readGameBy(idx, searchBy){
     var searchedItem = db.map(function(item) { 
         dispatcher = {
             "id": item.id,
@@ -54,13 +57,14 @@ function updateGame(updatedGame, newObject){
         return false
     }
     if (updatedItem >= 0){
-        db[updatedItem] = newObject
+        db[updatedItem] = newObject;
+        console.log("Game updated.")
         return true
     }
     console.log("Updated item doesn't exist.")
     return false
 };
-function deleteGameByKey(idx, searchBy){
+function deleteGameBy(idx, searchBy){
     var removeIndex = db.map(function(item) { 
         dispatcher = {
             "id": item.id,
@@ -75,9 +79,10 @@ function deleteGameByKey(idx, searchBy){
         return key; 
     }).indexOf(idx);
     if (removeIndex >= 0 && db.splice(removeIndex, 1)){
+        console.log("Item deleted.")
         return true
     }
     console.log("Item doesn't exist.")
     return false
 };
-function findBy(){};
+function filterBy(){};
