@@ -7,7 +7,8 @@ createGame(2, "Wiedźmin 3: Dziki Gon", "RPG", 2015, false, false, ['pc', 'gameo
 // console.log(readGame(0))
 console.log(deleteGameByKey(0, "id"))
 console.log(deleteGameByKey("League of Legends", "name"))
-console.log(db)
+// console.log(db)
+console.log(readGameByKey("Wiedźmin 3: Dziki Gon", "name"))
 
 function createGame(id, name, category, relase, mobileVersion, payToWin, tags){
     var computer_game = {
@@ -21,7 +22,25 @@ function createGame(id, name, category, relase, mobileVersion, payToWin, tags){
     };
     db.push(computer_game)
 };
-function readGame(game){
+function readGameByKey(idx, searchBy){
+    var searchedItem = db.map(function(item) { 
+        dispatcher = {
+            "id": item.id,
+            "name": item.name,
+            "category": item.category,
+            "relase": item.relase,
+            "mobileVersion": item.mobileVersion,
+            "payToWin": item.payToWin,
+            "tags": item.tags
+        }
+        key = dispatcher[searchBy]
+        return key; 
+    }).indexOf(idx);
+    if (searchedItem >= 0){
+        return db[searchedItem]
+    }
+    console.log("Item doesn't exist.")
+    return null
 }
 function updateGame(index){
 }
