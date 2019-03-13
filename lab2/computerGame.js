@@ -2,13 +2,13 @@ var db = [];
 
 createGame(0, "FIFA 19", "Sport", 2018, true, true, ['multiplayer', 'esport', 'ics', 'ps4', 'xbox', 'pc'])
 createGame(1, "League of Legends", "RPG", 2009, false, false, ['strategy', 'esport', 'pc'])
-createGame(2, "Wiedźmin 3: Dziki Gon", "RPG", 2015, false, false, ['pc', 'gameoftheyear', ''])
+createGame(2, "Wiedźmin 3: Dziki Gon", "RPG", 2015, false, false, ['pc', 'gameoftheyear', 'ps4'])
 createGame("Wiedźmin 4", "RPG", 2015, false, false, ['pc', 'gameoftheyear', ''])
 
 console.log(db)
-
 console.log(filterBy("category", "RPG"))
 console.log(filterBy("relase", 2018))
+console.log(filterBy("tags", "ps4"))
 console.log(deleteGameBy(0, "id"))
 console.log(deleteGameBy("League of Legends", "name"))
 // console.log(db)
@@ -100,7 +100,18 @@ function filterBy(searchBy, value) {
             "tags": element.tags
         }
         key = dispatcher[searchBy]
-        return (key == value)
+        if (searchBy != "tags") {
+            return (key == value)
+        } else {
+            var exists = false
+            key.forEach(element => {
+                console.log(element == value)
+                if (element == value){
+                    exists = true
+                }
+            });
+            return exists
+        }
       });
       return filtered
  };
