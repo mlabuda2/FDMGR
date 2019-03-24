@@ -105,7 +105,7 @@ function filterBy(searchBy, value) {
         } else {
             var exists = false
             key.forEach(element => {
-                console.log(element == value)
+                // console.log(element == value)
                 if (element == value){
                     exists = true
                 }
@@ -114,4 +114,4 @@ function filterBy(searchBy, value) {
         }
       });
       return filtered
- };
+};

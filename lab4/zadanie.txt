@@ -1,0 +1,14 @@
+1. zadanie: korzystając z wzorca module zaimplementować interfejs publiczny
+bazy danych ze swojej dziedziny
+
+stworzyć kilka metod 3-4 publiczne metody oraz funkcje prywatne
+
+"wybrać kilka właściwoości różnego typu, liczby bool stworzyć prywatne funkcje i zmienne
+wybrać co chcemy zwracać, wg jakiejś właściwości"
+
+2.stworzyć hierarchię dziedziczenia dla swojej dziedziny i wykorzystać w bazie z zad1.
+- wykorzystać dziedziczenie
+- rozszerzać funkcjonalności itp.
+
+
+    czyli tworzymy konstruktor game
