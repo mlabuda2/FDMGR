@@ -9,6 +9,6 @@ wybrać co chcemy zwracać, wg jakiejś właściwości"
 2.stworzyć hierarchię dziedziczenia dla swojej dziedziny i wykorzystać w bazie z zad1.
 - wykorzystać dziedziczenie
 - rozszerzać funkcjonalności itp.
-
+konstruktor, this, prototype
 
     czyli tworzymy konstruktor game
