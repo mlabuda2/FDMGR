@@ -130,4 +130,72 @@ lib.module.deleteGameBy("League of Legends", "name")
 
 console.log(lib.module.readAllDb())
 
+
+
+
 // ========== Zadanie 2 ===========  //
+
+function ComputerGame(name, category, relase, payToWin, tags){
+    this.name = name,
+    this.category = category,
+    this.relase = relase,
+    this.payToWin = payToWin,
+    this.tags = tags
+}
+
+ComputerGame.prototype = {
+    getName: function(){
+        return this.name;
+    },
+    getCategory: function(){
+        return this.category;
+    },
+    getRelase: function(){
+        return this.relase;
+    },
+    getPayToWin: function(){
+        return this.payToWin;
+    },
+    getTags: function(){
+        return this.tags;
+    }
+
+}
+
+// ComputerGame.prototype.getName = function(){
+//     return this.name;
+// }
+
+// ComputerGame.prototype.getWeight = function(){
+//     return this.weight;
+// }
+
+// ComputerGame.prototype.getType = function(){
+//     return this.type;
+// }
+
+// ComputerGame.prototype.getIsExo = function(){
+//     return this.isExo;
+// }
+
+// ComputerGame.prototype.getNamesOfMoons = function(){
+//     return this.namesOfMoons;
+// }
+
+ComputerGame.prototype.getDescription = function(){
+    console.log("Planet");
+}
+
+
+function MobileComputerGame(name, category, relase, payToWin, tags, is_android, is_ios){
+    Planet.call(this, name, category, relase, payToWin, tags, is_android, is_ios);
+    this.is_android = is_android
+    this.is_ios = is_ios
+}
+
+MobileComputerGame.prototype = Object.create(ComputerGame.prototype);
+MobileComputerGame.prototype.constructor = MobileComputerGame;
+
+MobileComputerGame.prototype.getDescription = function(){
+    console.log("Mobile computer game");
+}
