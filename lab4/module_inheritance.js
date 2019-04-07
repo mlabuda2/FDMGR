@@ -177,7 +177,7 @@ ComputerGame.prototype.getDescription = function(){
 
 
 function MobileComputerGame(name, category, relase, payToWin, tags, is_android, is_ios){
-    Planet.call(this, name, category, relase, payToWin, tags, is_android, is_ios);
+    ComputerGame.call(this, name, category, relase, payToWin, tags, is_android, is_ios);
     this.is_android = is_android
     this.is_ios = is_ios
 }
