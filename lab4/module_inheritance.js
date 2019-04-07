@@ -186,7 +186,7 @@ ComputerGame.prototype = {
     setTags: function(){
         this.tags = tags;
     }
-
+}
 
 ComputerGame.prototype.getDescription = function(){
     console.log("ComputerGame");
