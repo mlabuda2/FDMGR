@@ -168,8 +168,25 @@ ComputerGame.prototype = {
     getTags: function(){
         return this.tags;
     }
-
 }
+
+ComputerGame.prototype = {
+    setName: function(name){
+        this.name = name;
+    },
+    setCategory: function(category){
+        this.category = category;
+    },
+    setRelase: function(relase){
+        this.relase = relase;
+    },
+    setPayToWin: function(payToWin){
+        this.payToWin = payToWin;
+    },
+    setTags: function(){
+        this.tags = tags;
+    }
+
 
 ComputerGame.prototype.getDescription = function(){
     console.log("ComputerGame");
