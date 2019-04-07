@@ -1,0 +1,12 @@
+1. przepisac kod z ostatnich zajec w duchu ES6:
+-fat arrow/funkcje lambda
+-class (constructor, get/set)
+-let
+-const
+-string templates
+-uproszczone literały obiektów
+
+2.Hierarchia dziedziczenia podobnie jak w ostatnim zadaniu
+
+3. Babel:
+...........
