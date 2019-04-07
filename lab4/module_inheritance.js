@@ -172,7 +172,7 @@ ComputerGame.prototype = {
 }
 
 ComputerGame.prototype.getDescription = function(){
-    console.log("Planet");
+    console.log("ComputerGame");
 }
 
 
