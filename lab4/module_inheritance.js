@@ -222,4 +222,5 @@ MobileComputerGame.prototype = {
 let fifa_and = new MobileComputerGame("fifa19", "sport", 2018, false, ['ps4', 'xbox', 'esport'], true, false)
 console.log(fifa_and)
 
-// dodać metody zachowań typu: zagraj_mecz()...
+// dodać metody zachowań typu: rozpocznij_grę(){ if game is mobile: console log ... elif fifa: show ball}
+// połącz zadanie 1 z 2 wykorzystaj module do zadania 2. w zad1 w module musi być bazą w zadaniu 2.
