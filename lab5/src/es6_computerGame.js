@@ -19,14 +19,13 @@ class ComputerGame {
         this._relase = value
     }
     get name() {
-        this._name = 
+        return this._name
     }
     get category() {
-        this._category = 
+        return this._category
     }
     get relase() {
-        
-        this._relase = 
+        return this._relase 
     }
 
 }
