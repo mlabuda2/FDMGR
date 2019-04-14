@@ -218,3 +218,8 @@ MobileComputerGame.prototype = {
         }
     }
 }
+
+let fifa_and = new MobileComputerGame("fifa19", "sport", 2018, false, ['ps4', 'xbox', 'esport'], true, false)
+console.log(fifa_and)
+
+// dodać metody zachowań typu: zagraj_mecz()...
