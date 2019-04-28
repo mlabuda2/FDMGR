@@ -1,8 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import ListOfCGames from "./components/ListOfCGames";
 
-function Message(){
-    return <h2>Hello!</h2>
+function Message() {
+  return (
+    <div>
+      <ListOfCGames />
+    </div>
+  );
 }
-
-ReactDOM.render(<Message />, document.getElementById('root'));
+function tick() {
+  ReactDOM.render(<Message />, document.getElementById("root"));
+}
+setInterval(tick, 1000);
