@@ -12,26 +12,26 @@ lib.module = (function () {
     })
     return exists;
   };
+  var validated = function (game) {
+    if ((!game.name) || (!game.id && game.id != 0) || (!Number.isInteger(game.id))) {
+      console.log("Bad data.");
+      return false; 
+    }
+    return true;
+  };
 
   return {
-    publicProperty: 1,
-    createGame: function (id, name, category = null, relase = null, mobileVersion = null, payToWin = null, tags = []) {
-      if ((!name) || (!id && id != 0) || (!Number.isInteger(id))) { console.log("Bad data."); return false; }
-      if (isInDatabase(name)){
+    createGame: function (game) {
+      if (isInDatabase(game.name)){
+        console.log("Item already exist: " + game.name)
         return false;
       }
-      var computer_game = {
-          id: id,
-          name: name,
-          category: category,
-          relase: relase,
-          mobileVersion: mobileVersion,
-          payToWin: payToWin,
-          tags: tags
-      };
-      console.log("Item created.")
-      private_db.push(computer_game)
-      return true;
+      if (!validated(game)){
+        return false;
+      }
+      console.log("Item created: " + game.name)
+      private_db.push(game)
+      return true;      
     },
     readGameBy: function (idx, searchBy) {
       var searchedItem = private_db.map(function (item) {
@@ -123,28 +123,39 @@ lib.module = (function () {
   };
 })();
 
-lib.module.createGame(0, "FIFA 19", "Sport", 2018, true, true, ['multiplayer', 'esport', 'ics', 'ps4', 'xbox', 'pc'])
-lib.module.createGame(3, "FIFA 19", "Sport", 2018, true, true, ['multiplayer', 'esport', 'ics', 'ps4', 'xbox', 'pc'])
-lib.module.createGame(1, "League of Legends", "RPG", 2009, false, false, ['strategy', 'esport', 'pc'])
-lib.module.createGame(2, "Wiedźmin 3: Dziki Gon", "RPG", 2015, false, false, ['pc', 'gameoftheyear', 'ps4'])
+/* Tworzenie bazy */
+lib.module.createGame({id: 10, name: "Need for Speed U2", category: "Racing", relase: 2004, mobileVersion: true, payToWin: false, tags: ['game of all time', 'best game', 'pc']});
+lib.module.createGame({id: 0, name: "FIFA 19", category: "Sport", relase: 2018, mobileVersion: true, payToWin: true, tags: ['multiplayer', 'esport', 'ics', 'ps4', 'xbox', 'pc']})
+// walidacja nie przepuści tej samej nazwy ponownie
+lib.module.createGame({id: 3, name: "FIFA 19", category: "Sport", relase: 2018, mobileVersion: true, payToWin: true, tags: ['multiplayer', 'esport', 'ics', 'ps4', 'xbox', 'pc']})
+lib.module.createGame({id: 1, name: "League of Legends", category: "RPG", relase: 2009, mobileVersion: false, payToWin: false, tags: ['strategy', 'esport', 'pc']})
+lib.module.createGame({id: 2, name: "Wiedźmin 3: Dziki Gon", category: "RPG", relase: 2015, mobileVersion: false, payToWin: false, tags: ['pc', 'gameoftheyear', 'ps4']})
 
+
+/* Aktualizacja właściwości wybranego obiektu */
 game = lib.module.readGameBy("Wiedźmin 3: Dziki Gon", "name")
 game.category = "MMO/RPG"
 console.log(lib.module.updateGame(lib.module.readGameBy("Wiedźmin 3: Dziki Gon", "name"), game))
 
+
+/* Filtrowanie bazy danych po wybranej właściwości */
 console.log(lib.module.filterBy("category", "RPG"))
 console.log(lib.module.filterBy("tags", "ps4"))
 
+
+/* Usuwanie obiektu z bazy */
 lib.module.deleteGameBy("League of Legends", "name")
 
-console.log(lib.module.readAllDb())
 
+/* Zczytanie całej bazy */
+console.log(lib.module.readAllDb())
 
 
 
 // ========== Zadanie 2 ===========  //
 
-function ComputerGame(name, category, relase, payToWin, tags){
+function ComputerGame(id, name, category, relase, payToWin, tags){
+    this.id = id,
     this.name = name,
     this.category = category,
     this.relase = relase,
@@ -153,7 +164,7 @@ function ComputerGame(name, category, relase, payToWin, tags){
 }
 
 ComputerGame.prototype = {
-    getName: function(){
+    getName:  function(){
         return this.name;
     },
     getCategory: function(){
@@ -167,12 +178,9 @@ ComputerGame.prototype = {
     },
     getTags: function(){
         return this.tags;
-    }
-}
-
-ComputerGame.prototype = {
+    },
     setName: function(name){
-        this.name = name;
+      this.name = name;
     },
     setCategory: function(category){
         this.category = category;
@@ -191,36 +199,65 @@ ComputerGame.prototype = {
 ComputerGame.prototype.getDescription = function(){
     console.log("ComputerGame");
 }
-
+ComputerGame.prototype.runGame = function() {
+      console.log("Uruchamiam: " + this.name)
+}
 
 function MobileComputerGame(name, category, relase, payToWin, tags, is_android, is_ios){
     ComputerGame.call(this, name, category, relase, payToWin, tags, is_android, is_ios);
-    this.is_android = is_android
-    this.is_ios = is_ios
+    this.is_android = is_android;
+    this.is_ios = is_ios;
+    this.screen_horizontally = false;
 }
 
 MobileComputerGame.prototype = Object.create(ComputerGame.prototype);
 MobileComputerGame.prototype.constructor = MobileComputerGame;
 
-MobileComputerGame.prototype = {
-    is_android: function(){
-        return this.is_android;
-    },
-    is_ios: function (){
+MobileComputerGame.prototype.is_android = function(){
+  return this.is_android;
+}
+MobileComputerGame.prototype.is_ios = function (){
         return this.is_ios;
-    },
-    is_multiplatform: function(){
-        if (this.is_android && this.is_ios) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+}
+MobileComputerGame.prototype.is_multiplatform = function (){
+  if (this.is_android && this.is_ios) {
+    return true;
+  }
+  else {
+      return false;
+  }
+}
+MobileComputerGame.prototype.runGame = function() {
+  console.log("Uruchamiam: " + this.name + " (mobile)")
+}
+MobileComputerGame.prototype.rotateScreen = function() {
+  if (this.screen_horizontally){
+    this.screen_horizontally = false;
+    console.log(`Obracam ekran pionowo ${this.name} (mobile)`)
+  } else {
+      this.screen_horizontally = true;
+      console.log(`Obracam ekran poziomo ${this.name} (mobile)`)
+  }  
 }
 
-let fifa_and = new MobileComputerGame("fifa19", "sport", 2018, false, ['ps4', 'xbox', 'esport'], true, false)
-console.log(fifa_and)
+let fifa = new ComputerGame(11, "fifa20", "sport", 2019, false, ['ps4', 'xbox', 'esport'])
+let fifa_multiplatform = new MobileComputerGame(12, "fifa20.2", "sport", 2019, false, ['ps4', 'xbox', 'esport'], true, true)
 
-// dodać metody zachowań typu: rozpocznij_grę(){ if game is mobile: console log ... elif fifa: show ball}
-// połącz zadanie 1 z 2 wykorzystaj module do zadania 2. w zad1 w module musi być bazą w zadaniu 2.
+lib.module.createGame(fifa)
+lib.module.createGame(fifa_multiplatform)
+
+console.log(fifa)
+console.log(fifa_multiplatform)
+
+console.log(fifa.getName())
+fifa.setName("fifa20.pc")
+console.log(fifa.getName())
+fifa.runGame()
+// fifa.rotateScreen()
+
+
+console.log(fifa_multiplatform.getName())
+fifa_multiplatform.setName("fifa20.mobile")
+console.log(fifa_multiplatform.getName())
+fifa_multiplatform.runGame()
+fifa_multiplatform.rotateScreen()

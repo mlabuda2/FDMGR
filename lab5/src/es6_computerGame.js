@@ -27,6 +27,9 @@ class ComputerGame {
     runGame() {
         console.log(`Uruchamiam ${this.name}`)
     }
+    runGame2() {
+        console.log(`Uruchamiam2 ${this.name}`)
+    }
 }
 
 class MobileGame extends ComputerGame {
@@ -66,5 +69,6 @@ console.log(fifa_mob)
 fifa.runGame()
 // fifa.rotateScreen()
 fifa_mob.runGame()
+fifa_mob.runGame2()
 fifa_mob.rotateScreen()
 fifa_mob.rotateScreen()
