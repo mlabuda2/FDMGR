@@ -69,6 +69,6 @@ console.log(fifa_mob)
 fifa.runGame()
 // fifa.rotateScreen() // nie ma prawa działać
 fifa_mob.runGame()
-fifa_mob.runGameBase()
+fifa_mob.runGameBase() // test dziedzienia funkcji z klasy bazowej
 fifa_mob.rotateScreen()
 fifa_mob.rotateScreen()
