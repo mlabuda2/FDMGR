@@ -124,31 +124,31 @@ lib.module = (function () {
 })();
 
 /* Tworzenie bazy */
-lib.module.createGame({id: 10, name: "Need for Speed U2", category: "Racing", relase: 2004, mobileVersion: true, payToWin: false, tags: ['game of all time', 'best game', 'pc']});
-lib.module.createGame({id: 0, name: "FIFA 19", category: "Sport", relase: 2018, mobileVersion: true, payToWin: true, tags: ['multiplayer', 'esport', 'ics', 'ps4', 'xbox', 'pc']})
-// walidacja nie przepuści tej samej nazwy ponownie
-lib.module.createGame({id: 3, name: "FIFA 19", category: "Sport", relase: 2018, mobileVersion: true, payToWin: true, tags: ['multiplayer', 'esport', 'ics', 'ps4', 'xbox', 'pc']})
-lib.module.createGame({id: 1, name: "League of Legends", category: "RPG", relase: 2009, mobileVersion: false, payToWin: false, tags: ['strategy', 'esport', 'pc']})
-lib.module.createGame({id: 2, name: "Wiedźmin 3: Dziki Gon", category: "RPG", relase: 2015, mobileVersion: false, payToWin: false, tags: ['pc', 'gameoftheyear', 'ps4']})
+// lib.module.createGame({id: 10, name: "Need for Speed U2", category: "Racing", relase: 2004, mobileVersion: true, payToWin: false, tags: ['game of all time', 'best game', 'pc']});
+// lib.module.createGame({id: 0, name: "FIFA 19", category: "Sport", relase: 2018, mobileVersion: true, payToWin: true, tags: ['multiplayer', 'esport', 'ics', 'ps4', 'xbox', 'pc']})
+// // walidacja nie przepuści tej samej nazwy ponownie
+// lib.module.createGame({id: 3, name: "FIFA 19", category: "Sport", relase: 2018, mobileVersion: true, payToWin: true, tags: ['multiplayer', 'esport', 'ics', 'ps4', 'xbox', 'pc']})
+// lib.module.createGame({id: 1, name: "League of Legends", category: "RPG", relase: 2009, mobileVersion: false, payToWin: false, tags: ['strategy', 'esport', 'pc']})
+// lib.module.createGame({id: 2, name: "Wiedźmin 3: Dziki Gon", category: "RPG", relase: 2015, mobileVersion: false, payToWin: false, tags: ['pc', 'gameoftheyear', 'ps4']})
 
 
-/* Aktualizacja właściwości wybranego obiektu */
-game = lib.module.readGameBy("Wiedźmin 3: Dziki Gon", "name")
-game.category = "MMO/RPG"
-console.log(lib.module.updateGame(lib.module.readGameBy("Wiedźmin 3: Dziki Gon", "name"), game))
+// /* Aktualizacja właściwości wybranego obiektu */
+// game = lib.module.readGameBy("Wiedźmin 3: Dziki Gon", "name")
+// game.category = "MMO/RPG"
+// console.log(lib.module.updateGame(lib.module.readGameBy("Wiedźmin 3: Dziki Gon", "name"), game))
 
 
-/* Filtrowanie bazy danych po wybranej właściwości */
-console.log(lib.module.filterBy("category", "RPG"))
-console.log(lib.module.filterBy("tags", "ps4"))
+// /* Filtrowanie bazy danych po wybranej właściwości */
+// console.log(lib.module.filterBy("category", "RPG"))
+// console.log(lib.module.filterBy("tags", "ps4"))
 
 
-/* Usuwanie obiektu z bazy */
-lib.module.deleteGameBy("League of Legends", "name")
+// /* Usuwanie obiektu z bazy */
+// lib.module.deleteGameBy("League of Legends", "name")
 
 
-/* Zczytanie całej bazy */
-console.log(lib.module.readAllDb())
+// /* Zczytanie całej bazy */
+// console.log(lib.module.readAllDb())
 
 
 
@@ -240,24 +240,26 @@ MobileComputerGame.prototype.rotateScreen = function() {
   }  
 }
 
-let fifa = new ComputerGame(11, "fifa20", "sport", 2019, false, ['ps4', 'xbox', 'esport'])
-let fifa_multiplatform = new MobileComputerGame(12, "fifa20.2", "sport", 2019, false, ['ps4', 'xbox', 'esport'], true, true)
+// let fifa = new ComputerGame(11, "fifa20", "sport", 2019, false, ['ps4', 'xbox', 'esport'])
+// let fifa_multiplatform = new MobileComputerGame(12, "fifa20.2", "sport", 2019, false, ['ps4', 'xbox', 'esport'], true, true)
 
-lib.module.createGame(fifa)
-lib.module.createGame(fifa_multiplatform)
+// lib.module.createGame(fifa)
+// lib.module.createGame(fifa_multiplatform)
 
-console.log(fifa)
-console.log(fifa_multiplatform)
+// console.log(fifa)
+// console.log(fifa_multiplatform)
 
-console.log(fifa.getName())
-fifa.setName("fifa20.pc")
-console.log(fifa.getName())
-fifa.runGame()
-// fifa.rotateScreen()
+// console.log(fifa.getName())
+// fifa.setName("fifa20.pc")
+// console.log(fifa.getName())
+// fifa.runGame()
+// // fifa.rotateScreen()
 
 
-console.log(fifa_multiplatform.getName())
-fifa_multiplatform.setName("fifa20.mobile")
-console.log(fifa_multiplatform.getName())
-fifa_multiplatform.runGame()
-fifa_multiplatform.rotateScreen()
+// console.log(fifa_multiplatform.getName())
+// fifa_multiplatform.setName("fifa20.mobile")
+// console.log(fifa_multiplatform.getName())
+// fifa_multiplatform.runGame()
+// fifa_multiplatform.rotateScreen()
+
+module.exports = lib.module;

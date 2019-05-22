@@ -1,5 +1,8 @@
+const uuidv4 = require('uuid/v4');
+
 class ComputerGame {
     constructor(name, category, relase, payToWin, tags){
+        this._id = uuidv4();
         this._name = name,
         this._category = category,
         this._relase = relase,
@@ -33,8 +36,8 @@ class ComputerGame {
 }
 
 class MobileGame extends ComputerGame {
-    constructor(name, category, relase, payToWin, tags) {
-        super(name, category, relase, payToWin, tags);
+    constructor(id, name, category, relase, payToWin, tags) {
+        super(id, name, category, relase, payToWin, tags);
         this._screen_horizontally = false;
         this._is_mobile = true;
     }
@@ -52,6 +55,8 @@ class MobileGame extends ComputerGame {
         
     }
 }
+// export default ComputerGame;
+module.exports = ComputerGame;
 
 // class AndroidGame extends MobileGame {
 //     constructor(name, category, relase, payToWin, tags, is_mobile) {
@@ -59,16 +64,15 @@ class MobileGame extends ComputerGame {
 //         this._is_android = true;
 //     }
 // }
-
-let fifa_mob = new MobileGame("fifa19", "sport", 2018, false, ['ps4', 'xbox', 'esport'])
-let fifa = new ComputerGame("fifa19", "sport", 2018, false, ['ps4', 'xbox', 'esport'])
-console.log(fifa)
-fifa.name = "fifa19 pc"
-console.log(fifa)
-console.log(fifa_mob)
-fifa.runGame()
-// fifa.rotateScreen() // nie ma prawa działać
-fifa_mob.runGame()
-fifa_mob.runGameBase() // test dziedzienia funkcji z klasy bazowej
-fifa_mob.rotateScreen()
-fifa_mob.rotateScreen()
+// let fifa_mob = new MobileGame("fifa19", "sport", 2018, false, ['ps4', 'xbox', 'esport'])
+// let fifa = new ComputerGame("fifa19", "sport", 2018, false, ['ps4', 'xbox', 'esport'])
+// console.log(fifa)
+// fifa.name = "fifa19 pc"
+// console.log(fifa)
+// console.log(fifa_mob)
+// fifa.runGame()
+// // fifa.rotateScreen() // nie ma prawa działać
+// fifa_mob.runGame()
+// fifa_mob.runGameBase() // test dziedzienia funkcji z klasy bazowej
+// fifa_mob.rotateScreen()
+// fifa_mob.rotateScreen()
