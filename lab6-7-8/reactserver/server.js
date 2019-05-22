@@ -25,6 +25,7 @@ app.post('/api/cgames/add', (req, res) => {
 app.delete('/api/cgames/:id', (req, res) => {
     console.log("DELETE /api/cgames/:id")
     const id = req.params.id;
+    let deleted = false
     cgames.forEach(function  (element) {
         console.log(element)
         if (element._id == id){
@@ -33,13 +34,15 @@ app.delete('/api/cgames/:id', (req, res) => {
                 if (cgames.splice(idx, 1)) {
                     console.log("Item deleted.")
                     res.send({"message": "Item deleted."})
-                    return true
+                    deleted = true
                 }
             }
         }
-        console.log("Item doesn't exist.")
-        res.send({"message": "Item doesn't exist."})
     });
+    if (!deleted) {
+        console.log("Item doesn't exist.")
+        return res.send({"message": "Item doesn't exist."})
+    }
 });
 
 
