@@ -48,7 +48,8 @@ app.delete('/api/cgames/:id', (req, res) => {
 app.put('/api/cgames/update/:id', (req, res) => {
     console.log("UPDATE /api/cgames/update/:id")
     const id = req.params.id;
-    const game = req.body.cgame;
+    let game = req.body.cgame;
+    game._id = id;
     const validated = validate_game(game)
     let updated = false;
     if (validated[0]){
