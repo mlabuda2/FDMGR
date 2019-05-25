@@ -13,4 +13,4 @@ function Message() {
 function tick() {
   ReactDOM.render(<Message />, document.getElementById("root"));
 }
-setInterval(tick, 1000);
+setInterval(tick, 2000);

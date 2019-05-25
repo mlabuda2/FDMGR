@@ -1,11 +1,12 @@
 const ComputerGame = require('../../lab5/src/es6_computerGame');
 const lib = require('../../lab4/module_inheritance');
-
+var cors = require('cors')
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const port = 4000;
 
+const port = 4000;
+app.use(cors())
 app.use(bodyParser.json());
 const cgames = [];
 
