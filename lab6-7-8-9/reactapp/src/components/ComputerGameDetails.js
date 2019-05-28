@@ -7,15 +7,11 @@ class ComputerGameDetails extends Component {
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min);
     }
-    const { computerGamesDB } = this.props;
+    const { game } = this.props;
 
     return (
       <div>
-        {JSON.stringify(
-          computerGamesDB[getRandomInt(0, computerGamesDB.length - 1)],
-          null,
-          4
-        )}
+        {JSON.stringify(game)}
       </div>
     );
   }
