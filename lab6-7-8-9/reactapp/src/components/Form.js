@@ -16,6 +16,7 @@ class Form extends React.Component {
   };
 
   render() {
+    const {mode} = this.props;
     return (
       <div>
         <form onSubmit={(e) => this.props.handleSubmit(e, this.state.cgame)}>
@@ -34,7 +35,7 @@ class Form extends React.Component {
             <label htmlFor="tags">Tags
               <input type="text"  name="tags" onChange={this.handleChange} />
             </label> 
-            <input type="submit" value="Add game" />
+            <input type="submit" value={mode} />
         </form>
       </div>
     );

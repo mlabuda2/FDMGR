@@ -28,16 +28,35 @@ class ListOfComputerGames extends Component {
         })
         .then(res => {
           // console.log(res)
-          this.setState({ computerGamesDB: res })
+          this.setState({ computerGamesDB: res, markedGame: {} })
         });
   };
-
+  deleteGame = async (id) => {
+    console.log(id)
+    await axios.delete(`http://localhost:4000/api/cgames/${id}`)
+        .then(res => {
+          if (res.status !== 200) {
+            throw new Error(res.status);
+          }
+          this.callAPI();
+        });
+  };
+  editGame = async (game) => {
+    console.log("LOG:",game)
+    await axios.put(`http://localhost:4000/api/cgames/update/${game._id}`, {cgame: game})
+        .then(res => {
+          if (res.status !== 200) {
+            throw new Error(res.status);
+          }
+          this.callAPI();
+        });
+  };
   handleSubmit = async (event, game) => {
-    console.log(event)
-    console.log(game)
     event.preventDefault();
     await axios.post("http://localhost:4000/api/cgames/add", { cgame: game })
-    await this.callAPI();
+        .then( res => {
+          this.callAPI();
+        })
   };
 
   render() {
@@ -45,11 +64,11 @@ class ListOfComputerGames extends Component {
       <div>
         <ul>
           {this.state.computerGamesDB.map((x, i) => (
-            <li onClick={(e) => this.state.markedGame = x} key={i}>{x._name}</li>
+            <li onClick={(e) => this.setState({ markedGame: x })} key={i}>{x._name}</li>
           ))}
         </ul>
-        <ComputerGameDetails game={this.state.markedGame} />
-        <FormGame handleSubmit={this.handleSubmit} />
+        <ComputerGameDetails game={this.state.markedGame} deleteGame={this.deleteGame} editGame={this.editGame}/>
+        <FormGame handleSubmit={this.handleSubmit} mode="Add game" />
       </div>
     );
   }

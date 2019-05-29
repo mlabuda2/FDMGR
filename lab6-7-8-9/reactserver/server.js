@@ -49,6 +49,7 @@ app.put('/api/cgames/update/:id', (req, res) => {
     console.log("UPDATE /api/cgames/update/:id")
     const id = req.params.id;
     let game = req.body.cgame;
+    console.log(id, game)
     game._id = id;
     const validated = validate_game(game)
     let updated = false;
@@ -64,7 +65,9 @@ app.put('/api/cgames/update/:id', (req, res) => {
         });
     }
     else {
-        res.send({"message": validated[1]})
+        console.log(validated[1])
+        res.send(400, {"message": validated[1]})
+        return false;
     }
     if (!updated) {
         console.log("Item doesn't exist.")
