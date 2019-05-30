@@ -17,7 +17,7 @@ app.get('/api/cgames/all', (req, res) => {
 app.post('/api/cgames/add', (req, res) => {
     console.log("POST /api/cgames/add")
     const game = req.body.cgame;
-    const cgame = new ComputerGame(game.name, game.category, game.relase, game.payToWin, game.tags)
+    const cgame = new ComputerGame(game._name, game._category, game._relase, game._payToWin, game._tags)
     cgames.push(cgame)
     console.log(cgame)
     res.send({"message": "Added"})
@@ -66,7 +66,7 @@ app.put('/api/cgames/update/:id', (req, res) => {
     }
     else {
         console.log(validated[1])
-        res.send(400, {"message": validated[1]})
+        res.status(400).send({"message": validated[1]})
         return false;
     }
     if (!updated) {
@@ -80,15 +80,15 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 const validate_game = function(game) {
     if (!game){
         return [false, "Not game provided"]}
-    if (!game.name) { 
+    if (!game._name) { 
         return [false, "Not name provided."]}
-    if (!game.category) { 
+    if (!game._category) { 
         return [false, "Not category provided."]}
-    if (!game.relase) { 
+    if (!game._relase) { 
         return [false, "Not relase provided."]}
-    if (!game.payToWin & game.payToWin != false) { 
+    if (!game._payToWin & game.payToWin != false) { 
         return [false, "Not payToWin provided."]}
-    if (!game.tags) { 
+    if (!game._tags) { 
         return [false, "Not tags provided."]}
     return [true, "OK"]
 }

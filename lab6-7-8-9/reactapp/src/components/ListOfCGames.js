@@ -45,10 +45,10 @@ class ListOfComputerGames extends Component {
     console.log("LOG:",game)
     await axios.put(`http://localhost:4000/api/cgames/update/${game._id}`, {cgame: game})
         .then(res => {
-          if (res.status !== 200) {
-            throw new Error(res.status);
-          }
           this.callAPI();
+        })
+        .catch(error => {
+          console.log(error.response.data)
         });
   };
   handleSubmit = async (event, game) => {
