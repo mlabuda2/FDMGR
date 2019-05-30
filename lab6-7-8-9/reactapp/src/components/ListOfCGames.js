@@ -35,10 +35,10 @@ class ListOfComputerGames extends Component {
     console.log(id)
     await axios.delete(`http://localhost:4000/api/cgames/${id}`)
         .then(res => {
-          if (res.status !== 200) {
-            throw new Error(res.status);
-          }
           this.callAPI();
+        })
+        .catch(error => {
+          console.log(error.response)
         });
   };
   editGame = async (game) => {
