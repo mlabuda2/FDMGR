@@ -52,6 +52,7 @@ class ListOfComputerGames extends Component {
         });
   };
   handleSubmit = async (event, game) => {
+    this.setState({ cgame: game });
     event.preventDefault();
     await axios.post("http://localhost:4000/api/cgames/add", { cgame: game })
         .then( res => {
@@ -62,13 +63,15 @@ class ListOfComputerGames extends Component {
   render() {
     return (
       <div>
+        <h1>Computer Games</h1>
+
         <ul>
           {this.state.computerGamesDB.map((x, i) => (
             <li onClick={(e) => this.setState({ markedGame: x })} key={i}>{x._name}</li>
           ))}
         </ul>
         <ComputerGameDetails game={this.state.markedGame} deleteGame={this.deleteGame} editGame={this.editGame}/>
-        <FormGame handleSubmit={this.handleSubmit} mode="Add game" />
+        <FormGame handleSubmit={this.handleSubmit} mode="Add game" game={this.state.cgame} />
       </div>
     );
   }

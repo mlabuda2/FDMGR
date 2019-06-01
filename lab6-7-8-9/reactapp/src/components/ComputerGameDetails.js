@@ -4,7 +4,6 @@ import FormGame from "./Form";
 class ComputerGameDetails extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
     this.state = {
       editedGame: {}
     }
@@ -29,7 +28,7 @@ class ComputerGameDetails extends Component {
             ? 
             <div>
               <button onClick={(e) => this.props.deleteGame(game._id)}>Delete</button>
-              <FormGame handleSubmit={this.handleSubmit} mode="Edit game"/>
+              <FormGame handleSubmit={this.handleSubmit} mode="Edit game" game={game}/>
             </div>
             : null
           }

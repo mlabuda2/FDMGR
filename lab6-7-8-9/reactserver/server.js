@@ -86,7 +86,7 @@ const validate_game = function(game) {
         return [false, "Not category provided."]}
     if (!game._relase) { 
         return [false, "Not relase provided."]}
-    if (!game._payToWin & game.payToWin != false) { 
+    if (!game._payToWin & game._payToWin != false) { 
         return [false, "Not payToWin provided."]}
     if (!game._tags) { 
         return [false, "Not tags provided."]}

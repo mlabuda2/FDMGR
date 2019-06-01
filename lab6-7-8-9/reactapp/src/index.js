@@ -1,16 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import ListOfCGames from "./components/ListOfCGames";
+import App from "./App";
 
-function Message() {
-  return (
-    <div>
-      <ListOfCGames />
-    </div>
-  );
-}
-function tick() {
-  ReactDOM.render(<Message />, document.getElementById("root"));
-}
-setInterval(tick, 2000);
+ReactDOM.render(<App />, document.getElementById("root"));
