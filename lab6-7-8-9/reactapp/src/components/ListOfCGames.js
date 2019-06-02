@@ -17,20 +17,20 @@ class ListOfComputerGames extends Component {
   componentDidMount() {
     this.callAPI();
   }
-  
-  callAPI(){
-    fetch("http://localhost:4000/api/cgames/all")
+  callAPI = async () => {
+    await axios.get("http://localhost:4000/api/cgames/all")
         .then(res => {
-          if (!res.ok) {
-            throw new Error(res.status);
-          }
-          return res.json();
+          return res.data;
         })
         .then(res => {
-          // console.log(res)
+          console.log(res)
           this.setState({ computerGamesDB: res, markedGame: {} })
+        })
+        .catch(error => {
+          console.log(error.response)
         });
   };
+
   deleteGame = async (id) => {
     console.log(id)
     await axios.delete(`http://localhost:4000/api/cgames/${id}`)
